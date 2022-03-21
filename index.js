@@ -2,6 +2,9 @@ const express = require('express') //익스프레스 모듈을 가져온다
 const app = express() //
 const port = 5000
 const bodyParser = require('body-parser');
+
+const config = require('./config/key');
+
 const { User } = require('./models/User');
 
 
@@ -11,10 +14,10 @@ app.use(bodyParser.urlencoded({extended : true})); //bodyParser 는 클라이언
 app.use(bodyParser.json());
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://yunji:dudgus0519@boilerplate.szdfv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority').then(() => console.log('MongoDB Connected...'))
+mongoose.connect(config.mongoURI, {}).then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
-app.get('/', (req, res) => {res.send('Hello World!')})
+app.get('/', (req, res) => res.send('Hello World!~~~~~dfgdgdg'))
 
 //회원가입을 위한 라우트
 app.post('/register', (req, res) => {
